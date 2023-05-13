@@ -44,9 +44,9 @@ body {
 
 form {
     margin: 0 auto;
-    width: 45%;
+    width: 55%;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     margin-top: -30px;
     border-radius: 5px;
 }
@@ -57,7 +57,7 @@ form input {
     background: #2f2f2f;
     color: white;
     padding: 20px;
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px;
     border: none;
 }
 
@@ -78,6 +78,25 @@ form input {
     padding-top: 25px;
     width: 45%;
     margin: 0 auto;
+}
+
+.pager {
+    display: flex;
+    margin: 0 auto;
+    width: 40%;
+    overflow-x: hidden;
+    gap: 4px;
+    padding: 40px 0;
+}
+
+.pagebtn {
+    width: 130px;
+    margin: 0 auto;
+    color: aliceblue;
+    background-color: #2f2f2f;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
 }
 
 .movie-data {

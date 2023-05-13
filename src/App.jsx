@@ -14,7 +14,7 @@ export default function App() {
       <header className="head-nav">
         <h1>Find your film</h1>
         <button className="switch" id="FavList" onClick={handleClick}>
-          My Watchlist
+          {showHomeScreen ? "My Watchlist" : "Search for movies"}
         </button>
       </header>
       {showHomeScreen ? <Homescreen /> : <Watchlist />}

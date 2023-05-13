@@ -127,6 +127,7 @@ form input {
 
 .list img {
     width: 200px;
+    min-height: 270px;
     border-radius: 5px;
 }
 

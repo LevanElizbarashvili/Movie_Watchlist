@@ -12,6 +12,7 @@ export default function Homescreen() {
       let keyWord = searchInput.trim();
       setMovies([]);
       movieArr = [];
+
       if (keyWord) {
         await fetch(
           `https://www.omdbapi.com/?s=${keyWord}&page=${currentPage}&apikey=a46e0fe4`
@@ -43,7 +44,7 @@ export default function Homescreen() {
     };
   }
 
-  const debouncedSetSearchInput = debounce(setSearchInput, 400);
+  const debouncedSetSearchInput = debounce(setSearchInput, 300);
 
   return (
     <div>

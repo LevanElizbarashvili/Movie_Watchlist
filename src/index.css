@@ -73,7 +73,7 @@ form input {
 
 .list {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     color: white;
     padding-top: 25px;
     width: 45%;

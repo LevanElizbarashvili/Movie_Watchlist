@@ -70,20 +70,24 @@ export default function Homescreen() {
               <p className="favs">Start exploring</p>
             )}
           </div>
-          <div className="pager">
-            <button
-              className="pagebtn"
-              onClick={() => setCurrentPage(currentPage - 1)}
-            >
-              Previous page
-            </button>
-            <button
-              className="pagebtn"
-              onClick={() => setCurrentPage(currentPage + 1)}
-            >
-              Next page
-            </button>
-          </div>
+          {movies.length > 0 ? (
+            <div className="pager">
+              <button
+                className="pagebtn"
+                onClick={() => setCurrentPage(currentPage - 1)}
+              >
+                Previous page
+              </button>
+              <button
+                className="pagebtn"
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                Next page
+              </button>
+            </div>
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
     </div>

@@ -5,6 +5,12 @@ export default function Watchlist() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
   const [watchlistIds, setWatchlistIds] = useState([]);
 
+  function handleRemoveFromWatchlist(imdbID) {
+    setWatchlistMovies((prev) =>
+      prev.filter((movie) => movie.imdbID !== imdbID)
+    );
+  }
+
   useEffect(() => {
     setWatchlistIds(JSON.parse(localStorage.getItem("watchlistArr")));
   }, []);
@@ -28,7 +34,12 @@ export default function Watchlist() {
           <div id="list">
             {watchlistMovies.length > 0 ? (
               watchlistMovies.map((movData) => (
-                <MovieCard key={movData.id} {...movData} />
+                <MovieCard
+                  key={movData.id}
+                  {...movData}
+                  isWatchlist={true}
+                  removeFromWatchlist={handleRemoveFromWatchlist}
+                />
               ))
             ) : (
               <p className="favs">Your watchlist is empty</p>
@@ -39,3 +50,7 @@ export default function Watchlist() {
     </div>
   );
 }
+
+// TODO:
+// fix watchlist button
+// dark mode/light mode

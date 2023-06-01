@@ -29,6 +29,7 @@ export default function Homescreen() {
             .then((Response) => Response.json())
             .then((data) => {
               setMovies((prev) => [...prev, data]);
+              window.localStorage.setItem("movies", JSON.stringify(data));
             });
         });
       }
@@ -64,7 +65,7 @@ export default function Homescreen() {
           <div id="list">
             {movies.length > 0 ? (
               movies.map((movData) => (
-                <MovieCard key={movData.id} {...movData} />
+                <MovieCard key={movData.id} {...movData} isWatchlist={false} />
               ))
             ) : (
               <p className="favs">Start exploring</p>
@@ -93,3 +94,6 @@ export default function Homescreen() {
     </div>
   );
 }
+
+//FIXME
+// fix search results not to dissapear

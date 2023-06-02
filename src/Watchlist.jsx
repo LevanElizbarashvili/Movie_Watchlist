@@ -51,6 +51,4 @@ export default function Watchlist() {
   );
 }
 
-// TODO:
-// fix watchlist button
-// dark mode/light mode
+// TODO: react router implementation

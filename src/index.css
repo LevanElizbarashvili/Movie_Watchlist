@@ -1,12 +1,25 @@
-body {
+body,
+.main,
+.app {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100vh;
-    background-color: #121212;
 }
 
+#light .main,
+body {
+    background: #fff;
+    color: #121212;
+    height: 100%;
+    min-height: 100vh;
+}
+
+#dark .main,
+body {
+    background: #121212;
+    color: #fff;
+}
 
 .head-nav {
     display: flex;
@@ -22,7 +35,18 @@ body {
     background-blend-mode: darken;
 }
 
-.switch {
+.switch-container {
+    display: flex;
+    align-items: center;
+    justify-self: flex-end;
+    gap: 30px;
+}
+
+.switch-container label {
+    font-size: 22px;
+}
+
+.rout-btn {
     color: white;
     font-size: 24px;
     font-weight: 700;
@@ -33,8 +57,8 @@ body {
     cursor: pointer;
 }
 
-.switch:hover {
-    font-size: 28px;
+.rout-btn:hover {
+    text-decoration: underline;
 }
 
 .head-nav h1 {
@@ -47,19 +71,28 @@ form {
     width: 55%;
     display: flex;
     justify-content: center;
-    margin-top: -30px;
     border-radius: 5px;
 }
 
 form input {
     font-size: 17px;
     width: 80%;
-    background: #2f2f2f;
-    color: white;
     padding: 20px;
     border-radius: 10px;
     border: none;
+    margin-top: -30px;
 }
+
+#light form input {
+    background-color: #bdbdbd;
+    color: #121212;
+}
+
+#dark form input {
+    background: #2f2f2f;
+    color: #fff;
+}
+
 
 .btn {
     width: 20%;
@@ -80,6 +113,16 @@ form input {
     margin: 0 auto;
 }
 
+#light .list {
+    background: #fff;
+    color: #121212;
+}
+
+#dark .list {
+    background: #121212;
+    color: #fff;
+}
+
 .pager {
     display: flex;
     margin: 0 auto;
@@ -97,6 +140,11 @@ form input {
     padding: 15px;
     border-radius: 10px;
     border: none;
+}
+
+#light .pagebtn {
+    background: #bdbdbd;
+    color: #121212;
 }
 
 .movie-data {
@@ -145,8 +193,12 @@ form input {
     margin: 0 auto;
     text-align: center;
     font-size: 28px;
-    margin-top: 70px;
     font-weight: bold;
+    padding-top: 30px;
+}
+
+.main {
+    padding-bottom: 30px;
 }
 
 .add-btn {
@@ -156,4 +208,9 @@ form input {
     cursor: pointer;
     padding: 0.7em;
     border-radius: 5px;
+}
+
+#light .add-btn {
+    background: #bdbdbd;
+    color: #121212;
 }

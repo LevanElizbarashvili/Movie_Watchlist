@@ -48,7 +48,7 @@ export default function Homescreen() {
   const debouncedSetSearchInput = debounce(setSearchInput, 300);
 
   return (
-    <div>
+    <div className="base">
       <div>
         <div className="main">
           <form>

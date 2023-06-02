@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 let watchlistArr = [];
 
 export default function MovieCard(props) {
-  const [isWatchlist, setIsWatchlist] = useState(props.isWatchlist);
+  const [isWatchlist] = useState(props.isWatchlist);
 
   MovieCard.propTypes = {
     Title: PropTypes.string.isRequired,
@@ -30,7 +30,6 @@ export default function MovieCard(props) {
       watchlistArr.splice(index, 1);
     }
     localStorage.setItem("watchlistArr", JSON.stringify(watchlistArr));
-    setIsWatchlist(false);
   }
 
   const poster = props.Poster === "N/A" ? altImg : props.Poster;

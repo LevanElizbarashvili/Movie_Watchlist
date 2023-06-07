@@ -1,40 +1,51 @@
-import Homescreen from "./Homescreen";
-import Watchlist from "./Watchlist";
+import Homescreen from "./pages/Homescreen";
+import Watchlist from "./pages/Watchlist";
 import { createContext, useState } from "react";
 import ReactSwitch from "react-switch";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 export const ThemeContext = createContext(null);
 
 export default function App() {
-  const [showHomeScreen, setShowHomeScreen] = useState(true);
   const [theme, setTheme] = useState("dark");
 
   function toggleTheme() {
     setTheme((prev) => (prev == "dark" ? "light" : "dark"));
   }
 
-  function handleClick() {
-    setShowHomeScreen(!showHomeScreen);
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="app" id={theme}>
-        <header className="head-nav">
-          <h1>Find your film</h1>
-          <div className="switch-container">
-            <label>{theme === "dark" ? "Light Mode" : "Dark Mode"}</label>
-            <ReactSwitch
-              className="switch"
-              onChange={toggleTheme}
-              checked={theme === "dark"}
-            />
-            <button className="rout-btn" id="FavList" onClick={handleClick}>
-              {showHomeScreen ? "My Watchlist" : "Search for movies"}
-            </button>
-          </div>
-        </header>
-        {showHomeScreen ? <Homescreen /> : <Watchlist />}
+        <BrowserRouter>
+          <header>
+            <nav>
+              <Link className="title" to="/">
+                Find Your film
+              </Link>
+              <div className="router-links">
+                <div className="switch-container">
+                  <label>{theme === "dark" ? "🌙" : "☀️"}</label>
+                  <ReactSwitch
+                    className="switch"
+                    onChange={toggleTheme}
+                    checked={theme === "dark"}
+                  />
+                </div>
+                <Link className="rout-btn" to="/">
+                  Search
+                </Link>
+                <Link className="rout-btn" to="/watchlist">
+                  Watchlist
+                </Link>
+              </div>
+            </nav>
+          </header>
+          <Routes>
+            <Route path="/" element={<Homescreen />}></Route>
+            <Route path="/" element={<Homescreen />}></Route>
+            <Route path="/watchlist" element={<Watchlist />}></Route>
+          </Routes>
+        </BrowserRouter>
       </div>
     </ThemeContext.Provider>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import MovieCard from "./components/MovieCard";
+import MovieCard from "../components/MovieCard";
 
 export default function Watchlist() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);

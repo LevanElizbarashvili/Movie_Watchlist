@@ -21,25 +21,48 @@ body {
     color: #fff;
 }
 
-.head-nav {
+header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: start;
     color: white;
     background-image: url("assets/backg.jpg");
     background-size: cover;
-    padding: 130px 50px;
+    padding: 50px 50px 300px 50px;
     margin: 0 auto;
     font-size: 42px;
     background-color: rgb(0, 0, 0, 0.7);
     background-blend-mode: darken;
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 95%;
+    position: fixed;
+}
+
+.title {
+    font-size: 50px;
+    color: white;
+    font-weight: 700;
+    line-height: 20px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.router-links {
+    display: flex;
+    gap: 45px;
+}
+
 .switch-container {
     display: flex;
     align-items: center;
     justify-self: flex-end;
-    gap: 30px;
+    gap: 15px;
 }
 
 .switch-container label {
@@ -58,12 +81,7 @@ body {
 }
 
 .rout-btn:hover {
-    text-decoration: underline;
-}
-
-.head-nav h1 {
-    letter-spacing: -0.045em;
-    font-weight: 800;
+    color: #787878;
 }
 
 form {

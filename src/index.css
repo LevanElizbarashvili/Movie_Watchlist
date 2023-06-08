@@ -5,6 +5,8 @@ body,
     margin: 0;
     padding: 0;
     width: 100%;
+    position: relative;
+    min-height: 100vh;
 }
 
 #light .main,
@@ -126,19 +128,22 @@ form input {
     display: flex;
     justify-content: start;
     color: white;
-    padding-top: 25px;
+    padding: 40px 0;
     width: 45%;
     margin: 0 auto;
+
 }
 
 #light .list {
-    background: #fff;
+    background: #ffffff;
     color: #121212;
+    border-bottom: 1px solid #E5E7EB;
 }
 
 #dark .list {
     background: #121212;
     color: #fff;
+    border-bottom: 1px solid #2C2C2C;
 }
 
 .pager {
@@ -210,9 +215,27 @@ form input {
     width: 50%;
     margin: 0 auto;
     text-align: center;
-    font-size: 28px;
+    font-size: 18px;
     font-weight: bold;
     padding-top: 30px;
+}
+
+.watchlist-startscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-top: 40px;
+
+}
+
+.watchlist-btn {
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #787878;
 }
 
 .main {
@@ -226,6 +249,7 @@ form input {
     cursor: pointer;
     padding: 0.7em;
     border-radius: 5px;
+    font-weight: 700;
 }
 
 #light .add-btn {

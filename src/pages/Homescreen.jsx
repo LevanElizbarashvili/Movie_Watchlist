@@ -1,39 +1,46 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
-let movieArr = [];
 
 export default function Homescreen() {
   const [movies, setMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function searchMovie() {
-      let keyWord = searchInput.trim();
-      setMovies([]);
-      movieArr = [];
+      setIsLoading(true);
 
-      if (keyWord) {
-        await fetch(
-          `https://www.omdbapi.com/?s=${keyWord}&page=${currentPage}&apikey=a46e0fe4`
-        )
-          .then((res) => res.json())
-          .then((arr) => {
-            for (let i = 0; i < arr.Search.length; i++) {
-              movieArr.push(arr.Search[i].imdbID);
-            }
-          });
+      try {
+        let firstSearch = localStorage.getItem("searchValue");
+        let keyWord = firstSearch ? firstSearch : searchInput.trim();
 
-        movieArr.map((id) => {
-          fetch(`https://www.omdbapi.com/?i=${id}&apikey=a46e0fe4`)
-            .then((Response) => Response.json())
-            .then((data) => {
-              setMovies((prev) => [...prev, data]);
-              window.localStorage.setItem("movies", JSON.stringify(data));
-            });
-        });
+        if (keyWord) {
+          const response = await fetch(
+            `https://www.omdbapi.com/?s=${keyWord}&page=${currentPage}&apikey=a46e0fe4`
+          );
+          const data = await response.json();
+
+          let movieIds = [];
+          if (data.Search) {
+            movieIds = data.Search.map((movie) => movie.imdbID);
+          }
+          const movieDataPromises = movieIds.map((id) =>
+            fetch(`https://www.omdbapi.com/?i=${id}&apikey=a46e0fe4`).then(
+              (response) => response.json()
+            )
+          );
+
+          const movieData = await Promise.all(movieDataPromises);
+          setMovies(movieData);
+        }
+      } catch (error) {
+        console.error("Error searching movies:", error);
       }
+
+      setIsLoading(false);
     }
+
     searchMovie();
   }, [searchInput, currentPage]);
 
@@ -59,11 +66,17 @@ export default function Homescreen() {
               name="search"
               onChange={function (e) {
                 debouncedSetSearchInput(e.target.value);
+                localStorage.setItem(
+                  "searchValue",
+                  JSON.stringify(e.target.value)
+                );
               }}
             ></input>
           </form>
           <div id="list">
-            {movies.length > 0 ? (
+            {isLoading ? (
+              <p className="favs">Loading...</p>
+            ) : movies.length > 0 ? (
               movies.map((movData) => (
                 <MovieCard key={movData.id} {...movData} isWatchlist={false} />
               ))
@@ -94,6 +107,4 @@ export default function Homescreen() {
     </div>
   );
 }
-
-//FIXME
-// fix search results not to dissapear
+``;

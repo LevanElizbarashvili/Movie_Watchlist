@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
+import { Link } from "react-router-dom";
 
 export default function Watchlist() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
@@ -42,7 +43,13 @@ export default function Watchlist() {
                 />
               ))
             ) : (
-              <p className="favs">Your watchlist is empty</p>
+              <div className="watchlist-startscreen">
+                <p className="favs">Your watchlist is empty</p>
+                <Link to="/" className="watchlist-btn">
+                  {" "}
+                  ➕ Let’s add some movies!
+                </Link>
+              </div>
             )}
           </div>
         </div>

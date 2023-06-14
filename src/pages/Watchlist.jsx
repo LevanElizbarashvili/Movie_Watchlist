@@ -57,5 +57,3 @@ export default function Watchlist() {
     </div>
   );
 }
-
-// TODO: react router implementation

@@ -1,7 +1,7 @@
 body,
 .main,
 .app {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -70,18 +70,51 @@ nav {
 }
 
 .switch-container label {
-    font-size: 22px;
+    font-size: 16px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+    text-align: center;
+    gap: 30px;
+    height: 60vh;
+}
+
+#light .login-container {
+    background-color: #fff;
+    color: #121212;
+}
+
+#dark .login-container {
+    background: #121212;
+    color: #fff;
+}
+
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    width: 25%;
+    min-width: 290px;
+
 }
 
 .rout-btn {
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 20px;
     text-decoration: none;
     background: none;
     border: none;
     cursor: pointer;
+    display: flex;
+    gap: 10px;
 }
 
 .rout-btn:hover {
@@ -262,6 +295,10 @@ form input {
 #light .add-btn {
     background: #bdbdbd;
     color: #121212;
+}
+
+.checkMark {
+    color: green;
 }
 
 .footer {

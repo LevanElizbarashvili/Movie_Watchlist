@@ -50,22 +50,21 @@ export default function MovieCard(props) {
               className="add-btn"
               onClick={() => removeFromWatchlist(props.imdbID)}
             >
-              {" "}
               - Remove
             </button>
           ) : (
-            <button
-              id="addbtn"
-              className="add-btn"
-              onClick={(e) => {
-                e.target.style.backgroundColor = "green";
-                e.target.textContent = "✔";
-                addToWatchlist(props.imdbID);
-              }}
-            >
-              {" "}
-              + Watchlist
-            </button>
+            <div className="checkMark">
+              <button
+                id="addbtn"
+                className="add-btn"
+                onClick={(e) => {
+                  e.target.parentNode.innerHTML = "✔";
+                  addToWatchlist(props.imdbID);
+                }}
+              >
+                + Watchlist
+              </button>
+            </div>
           )}
         </div>
         <p className="plot">{props.Plot}</p>

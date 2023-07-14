@@ -42,6 +42,7 @@ export default function Homescreen() {
     }
 
     searchMovie();
+    window.scrollTo(0, 0)
   }, [searchInput, currentPage]);
 
   function debounce(func, wait) {
@@ -112,4 +113,3 @@ export default function Homescreen() {
     </div>
   );
 }
-``;

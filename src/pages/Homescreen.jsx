@@ -52,9 +52,9 @@ export default function Homescreen() {
     };
   }
 
-  window.onbeforeunload = function () {
+  window.onunload = function () {
     localStorage.removeItem("searchValue");
-    return "";
+    return '';
   };
 
   const debouncedSetSearchInput = debounce(setSearchInput, 300);

@@ -44,7 +44,7 @@ export default function Watchlist() {
               ))
             ) : (
               <div className="text-lg mt-24">
-                <p className="">Your watchlist is empty</p>
+                <p>Your watchlist is empty</p>
                 <Link to="/"> ➕ Let’s add some movies!</Link>
               </div>
             )}

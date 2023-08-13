@@ -83,7 +83,7 @@ export default function Homescreen() {
           </form>
           <div id="list">
             {isLoading ? (
-              <p className="">Loading...</p>
+              <p>Loading...</p>
             ) : movies.length > 0 ? (
               movies.map((movData) => (
                 <MovieCard key={movData.id} {...movData} isWatchlist={false} />

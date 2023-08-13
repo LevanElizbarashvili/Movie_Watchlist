@@ -15,7 +15,7 @@ export default function MovieCard(props) {
     imdbID: PropTypes.string.isRequired,
     Plot: PropTypes.string.isRequired,
     isWatchlist: PropTypes.bool.isRequired,
-    removeFromWatchlist: PropTypes.func.isRequired,
+    removeFromWatchlist: PropTypes.any.isRequired,
   };
 
   function addToWatchlist(id) {

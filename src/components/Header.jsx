@@ -27,7 +27,7 @@ export default function Header() {
             onClick={handleThemeSwitch}
           >
             <CgDarkMode />
-            DarkMode
+            {theme === "dark" ? "LightMode" : "DarkMode"}
           </button>
           <Link className="text-sm flex items-center gap-2" to="/">
             <FaSearch /> Search

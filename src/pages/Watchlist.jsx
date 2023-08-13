@@ -31,7 +31,7 @@ export default function Watchlist() {
   return (
     <div>
       <div>
-        <div className="main">
+        <div className="text-center h-screen">
           <div id="list">
             {watchlistMovies.length > 0 ? (
               watchlistMovies.map((movData) => (
@@ -43,12 +43,9 @@ export default function Watchlist() {
                 />
               ))
             ) : (
-              <div className="watchlist-startscreen">
-                <p className="favs">Your watchlist is empty</p>
-                <Link to="/" className="watchlist-btn">
-                  {" "}
-                  ➕ Let’s add some movies!
-                </Link>
+              <div className="text-lg mt-24">
+                <p className="">Your watchlist is empty</p>
+                <Link to="/"> ➕ Let’s add some movies!</Link>
               </div>
             )}
           </div>

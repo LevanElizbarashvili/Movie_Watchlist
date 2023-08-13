@@ -1,37 +1,42 @@
 import { Link } from "react-router-dom";
-import ReactSwitch from "react-switch";
-import { useContext } from "react";
-import { ThemeContext } from "./Layout";
-import { FaUserCircle, FaSearch, FaClipboardCheck } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FaUserCircle, FaSearch, FaBookmark } from "react-icons/fa";
+import { CgDarkMode } from "react-icons/cg";
 
 export default function Header() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  function handleThemeSwitch() {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }
 
   return (
-    <header>
-      <nav>
-        <Link className="title" to="/">
-          Find Your film
-        </Link>
-        <div className="router-links">
-          <div className="switch-container">
-            <label>{theme === "dark" ? "🌙" : "☀️"}</label>
-            <ReactSwitch
-              className="switch"
-              onChange={toggleTheme}
-              checked={theme === "dark"}
-              width={40}
-              height={20}
-            />
-          </div>
-          <Link className="rout-btn" to="/">
+    <header className="flex justify-center">
+      <nav className="flex justify-between items-center p-4">
+        <div className="flex gap-4 items-center justify-center">
+          <button
+            className="text-sm flex items-center gap-2"
+            onClick={handleThemeSwitch}
+          >
+            <CgDarkMode />
+            DarkMode
+          </button>
+          <Link className="text-sm flex items-center gap-2" to="/">
             <FaSearch /> Search
           </Link>
-          <Link className="rout-btn" to="/watchlist">
-            <FaClipboardCheck />
+          <Link className="text-sm flex items-center gap-2" to="/watchlist">
+            <FaBookmark />
             Watchlist
           </Link>
-          <Link className="rout-btn" to="/login">
+          <Link className="text-sm flex items-center gap-2" to="/login">
             <FaUserCircle /> Login
           </Link>
         </div>
@@ -39,3 +44,5 @@ export default function Header() {
     </header>
   );
 }
+
+// TODO: "add dark mode";

@@ -42,7 +42,7 @@ export default function Homescreen() {
     }
 
     searchMovie();
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }, [searchInput, currentPage]);
 
   function debounce(func, wait) {
@@ -55,18 +55,20 @@ export default function Homescreen() {
 
   window.onunload = function () {
     localStorage.removeItem("searchValue");
-    return '';
+    return "";
   };
 
   const debouncedSetSearchInput = debounce(setSearchInput, 300);
 
   return (
-    <div className="base">
+    <div>
       <div>
-        <div className="main">
-          <form>
+        <div>
+          <form className="text-center m-4">
             <input
               id="search"
+              className="rounded text-center text-base text-gray-500 capitalize 
+              border-2 border-gray-500 p-2 dark:bg-[#121212] dark:text-gray-300"
               type="text"
               placeholder="Search for a movie"
               name="search"
@@ -81,25 +83,27 @@ export default function Homescreen() {
           </form>
           <div id="list">
             {isLoading ? (
-              <p className="favs">Loading...</p>
+              <p className="">Loading...</p>
             ) : movies.length > 0 ? (
               movies.map((movData) => (
                 <MovieCard key={movData.id} {...movData} isWatchlist={false} />
               ))
             ) : (
-              <p className="favs">Start exploring</p>
+              <p className="text-center m-4 h-screen text-bold-700">
+                Start exploring
+              </p>
             )}
           </div>
           {movies.length > 0 ? (
-            <div className="pager">
+            <div className="flex justify-center gap-3 my-4">
               <button
-                className="pagebtn"
+                className="border-2 border-gray-500 rounded-md p-4"
                 onClick={() => setCurrentPage(currentPage - 1)}
               >
-                Previous page
+                Prev page
               </button>
               <button
-                className="pagebtn"
+                className="border-2 border-gray-500 rounded-md p-4"
                 onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Next page

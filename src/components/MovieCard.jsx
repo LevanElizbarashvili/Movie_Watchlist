@@ -34,29 +34,29 @@ export default function MovieCard(props) {
 
   const poster = props.Poster === "N/A" ? altImg : props.Poster;
   return (
-    <div className="list">
-      <img src={poster} alt="img"></img>
-      <div className="movie-data">
-        <div className="titleRating">
-          <h1>{props.Title}</h1>
-          <p>⭐ {props.imdbRating}</p>
+    <div className="flex m-4 border-b-1 border-gray-500 ">
+      <img src={poster} alt="img" className="w-1/4 h-full rounded-lg"></img>
+      <div className="w-3/4 flex flex-col justify-end items-start ml-2 font-medium">
+        <div className="flex items-center justify-between w-full h-1/3">
+          <h1 className="text-md">{props.Title}</h1>
+          <p className="text-sm">⭐ {props.imdbRating}</p>
         </div>
-        <div className="movieDetails">
+        <div className="flex justify-between items-center w-full text-xs h-1/3">
           <p>{props.Runtime}</p>
           <p>{props.Genre}</p>
           {isWatchlist ? (
             <button
               id="removebtn"
-              className="add-btn"
+              className="border-2 border-gray-500 rounded-md p-1"
               onClick={() => removeFromWatchlist(props.imdbID)}
             >
               - Remove
             </button>
           ) : (
-            <div className="checkMark">
+            <div className="">
               <button
                 id="addbtn"
-                className="add-btn"
+                className="border-2 border-gray-500 rounded-md p-1"
                 onClick={(e) => {
                   e.target.parentNode.innerHTML = "✔";
                   addToWatchlist(props.imdbID);
@@ -67,7 +67,7 @@ export default function MovieCard(props) {
             </div>
           )}
         </div>
-        <p className="plot">{props.Plot}</p>
+        <p className="text-xs text-start h-2/3">{props.Plot}</p>
       </div>
     </div>
   );

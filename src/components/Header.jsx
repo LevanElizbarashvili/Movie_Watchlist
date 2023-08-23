@@ -22,13 +22,6 @@ export default function Header() {
     <header className="flex justify-center">
       <nav className="flex justify-between items-center p-4">
         <div className="flex gap-4 items-center justify-center">
-          <button
-            className="text-sm flex items-center gap-2"
-            onClick={handleThemeSwitch}
-          >
-            <CgDarkMode />
-            {theme === "dark" ? "LightMode" : "DarkMode"}
-          </button>
           <Link className="text-sm flex items-center gap-2" to="/">
             <FaSearch /> Search
           </Link>
@@ -36,6 +29,13 @@ export default function Header() {
             <FaBookmark />
             Watchlist
           </Link>
+          <button
+            className="text-sm flex items-center gap-2"
+            onClick={handleThemeSwitch}
+          >
+            <CgDarkMode />
+            {theme === "dark" ? "LightMode" : "DarkMode"}
+          </button>
           <Link className="text-sm flex items-center gap-2" to="/login">
             <FaUserCircle /> Login
           </Link>

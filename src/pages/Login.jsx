@@ -73,7 +73,7 @@ export default function Login() {
         />
         <button
           onClick={handleSubmit}
-          className="border-2 border-green-500 rounded-md p-4 w-1/4 sm:w-[20%] lg:w-[20%]"
+          className="border-2 border-green-500 rounded-md p-4 w-48 sm:w-[25%] lg:w-[20%]"
         >
           Sign In
         </button>
@@ -86,7 +86,7 @@ export default function Login() {
         </button>
         <p className="mt-4 uppercase">or</p>
         <button
-          className="border-2 border-red-500 rounded-md p-4 mt-4 w-1/4 sm:w-[20%] lg:w-[20%]"
+          className="border-2 border-red-500 rounded-md p-4 mt-4 w-48 sm:w-[25%] lg:w-[20%]"
           onClick={googleAuth}
         >
           Sign in with Google

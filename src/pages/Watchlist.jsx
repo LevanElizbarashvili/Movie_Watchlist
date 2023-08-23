@@ -17,21 +17,24 @@ export default function Watchlist() {
   }, []);
 
   useEffect(() => {
-    if (watchlistIds.length > 0) {
-      watchlistIds.map((id) => {
-        fetch(`https://www.omdbapi.com/?i=${id}&apikey=a46e0fe4`)
-          .then((Response) => Response.json())
-          .then((data) => {
-            setWatchlistMovies((prev) => [...prev, data]);
-          });
-      });
+    function getWatchList() {
+      if (watchlistIds.length > 0) {
+        watchlistIds.map((id) => {
+          fetch(`https://www.omdbapi.com/?i=${id}&apikey=a46e0fe4`)
+            .then((Response) => Response.json())
+            .then((data) => {
+              setWatchlistMovies((prev) => [...prev, data]);
+            });
+        });
+      } else setWatchlistMovies([]);
     }
+    getWatchList();
   }, [watchlistIds]);
 
   return (
     <div>
       <div>
-        <div className="text-center h-screen">
+        <div className="text-center m-4 h-screen">
           <div id="list">
             {watchlistMovies.length > 0 ? (
               watchlistMovies.map((movData) => (
@@ -43,7 +46,7 @@ export default function Watchlist() {
                 />
               ))
             ) : (
-              <div className="text-lg mt-24">
+              <div className="text-lg mt-24 h-screen">
                 <p>Your watchlist is empty</p>
                 <Link to="/"> ➕ Let’s add some movies!</Link>
               </div>

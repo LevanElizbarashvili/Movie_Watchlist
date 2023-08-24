@@ -10,7 +10,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Homescreen />}></Route>
+            <Route path="/" exact element={<Homescreen />}></Route>
             <Route path="/watchlist" element={<Watchlist />}></Route>
             <Route path="/login" element={<Login />}></Route>
           </Route>

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBv7NPLQJuBUU1MS4xUtPyFycTmG3o3CZc",
@@ -16,3 +16,4 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
 export const db = getFirestore(app);
+export const watchlistCollectionRef = collection(db, "movies");

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 import { Link } from "react-router-dom";
+import { getDocs } from "firebase/firestore";
+import { watchlistCollectionRef } from "../utils/firebase";
 
 export default function Watchlist() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
@@ -13,14 +15,22 @@ export default function Watchlist() {
   }
 
   useEffect(() => {
-    setWatchlistIds(JSON.parse(localStorage.getItem("watchlistArr")));
+    try {
+      const getWatchlistIds = async () => {
+        const data = await getDocs(watchlistCollectionRef);
+        setWatchlistIds(data.docs.map((doc) => ({ ...doc.data() })));
+      };
+      getWatchlistIds();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   useEffect(() => {
     function getWatchList() {
       if (watchlistIds.length > 0) {
         watchlistIds.map((id) => {
-          fetch(`https://www.omdbapi.com/?i=${id}&apikey=a46e0fe4`)
+          fetch(`https://www.omdbapi.com/?i=${id.imdbID}&apikey=a46e0fe4`)
             .then((Response) => Response.json())
             .then((data) => {
               setWatchlistMovies((prev) => [...prev, data]);

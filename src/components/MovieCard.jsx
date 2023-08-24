@@ -1,7 +1,8 @@
 import { useState } from "react";
 import altImg from "../assets/noimage.jpg";
 import PropTypes from "prop-types";
-let watchlistArr = [];
+import { addDoc, deleteDoc, getDocs, query, where } from "firebase/firestore";
+import { watchlistCollectionRef } from "../utils/firebase";
 
 export default function MovieCard(props) {
   const [isWatchlist] = useState(props.isWatchlist);
@@ -18,30 +19,32 @@ export default function MovieCard(props) {
     removeFromWatchlist: PropTypes.any.isRequired,
   };
 
-  function addToWatchlist(id) {
-    watchlistArr.push(id);
-    localStorage.setItem("watchlistArr", JSON.stringify(watchlistArr));
+  async function addToWatchlist(id) {
+    await addDoc(watchlistCollectionRef, {
+      imdbID: id,
+    });
   }
 
-  function removeFromWatchlist(id) {
+  async function removeFromWatchlist(id) {
     props.removeFromWatchlist(id);
-    const index = watchlistArr.indexOf(id);
-    if (index > -1) {
-      watchlistArr.splice(index, 1);
-    }
-    localStorage.setItem("watchlistArr", JSON.stringify(watchlistArr));
+    const moviequery = query(watchlistCollectionRef, where("imdbID", "==", id));
+    const querySnapshot = await getDocs(moviequery);
+    console.log(querySnapshot);
+    querySnapshot.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
   }
 
   const poster = props.Poster === "N/A" ? altImg : props.Poster;
   return (
-    <div className="flex m-4 border-b-1 border-gray-500 sm:w-[70%] sm:m-auto sm:p-2 md:w-[60%] lg:w-[45%] ">
+    <div className="flex m-4 border-b-1 border-gray-500 sm:w-[70%] sm:m-auto sm:p-2 md:w-[60%] lg:w-[45%] min-w-[360px] ">
       <img src={poster} alt="img" className="w-1/4 h-full rounded-lg"></img>
       <div className="w-3/4 flex flex-col ml-2 font-medium md:ml-4 md:justify-around">
         <div className="flex items-center justify-between w-full h-1/3 md:text-lg">
-          <h1 className="text-md">{props.Title}</h1>
+          <h1 className="text-xl 2xl:text-3xl">{props.Title}</h1>
           <p className="text-sm">⭐ {props.imdbRating}</p>
         </div>
-        <div className="flex justify-between items-center w-full text-xs lg:text-sm lg:font-normal h-1/3">
+        <div className="flex justify-between items-center w-full text-xs 2xl:text-xl h-1/3">
           <p>{props.Runtime}</p>
           <p>{props.Genre}</p>
           {isWatchlist ? (
@@ -67,7 +70,7 @@ export default function MovieCard(props) {
             </div>
           )}
         </div>
-        <p className="text-xs text-start w-full h-2/3 lg:text-sm lg:font-normal">
+        <p className="text-xs text-start w-full h-2/3 2xl:text-base">
           {props.Plot}
         </p>
       </div>

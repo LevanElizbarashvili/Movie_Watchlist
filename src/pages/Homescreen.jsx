@@ -64,7 +64,7 @@ export default function Homescreen() {
     <div>
       <div>
         <div>
-          <form className="text-center m-4">
+          <form className="text-center m-2">
             <input
               id="search"
               className="rounded text-center text-base text-gray-500 capitalize 

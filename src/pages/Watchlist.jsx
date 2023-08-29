@@ -7,6 +7,7 @@ import { watchlistCollectionRef } from "../utils/firebase";
 export default function Watchlist() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
   const [watchlistIds, setWatchlistIds] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
 
   function handleRemoveFromWatchlist(imdbID) {
     setWatchlistMovies((prev) =>
@@ -27,16 +28,23 @@ export default function Watchlist() {
   }, []);
 
   useEffect(() => {
-    function getWatchList() {
-      if (watchlistIds.length > 0) {
-        watchlistIds.map((id) => {
-          fetch(`https://www.omdbapi.com/?i=${id.imdbID}&apikey=a46e0fe4`)
-            .then((Response) => Response.json())
-            .then((data) => {
-              setWatchlistMovies((prev) => [...prev, data]);
-            });
-        });
-      } else setWatchlistMovies([]);
+    async function getWatchList() {
+      try {
+        setisLoading(true);
+        if (watchlistIds.length > 0) {
+          for (const id of watchlistIds) {
+            const response = await fetch(
+              `https://www.omdbapi.com/?i=${id.imdbID}&apikey=a46e0fe4`
+            );
+            const data = await response.json();
+            setWatchlistMovies((prev) => [...prev, data]);
+          }
+        }
+        setisLoading(false);
+      } catch (error) {
+        console.error(error);
+        setWatchlistMovies([]);
+      }
     }
     getWatchList();
   }, [watchlistIds]);
@@ -44,9 +52,13 @@ export default function Watchlist() {
   return (
     <div>
       <div>
-        <div className="text-center m-4 h-screen">
+        <div className="text-center m-2 h-screen">
           <div id="list">
-            {watchlistMovies.length > 0 ? (
+            {isLoading ? (
+              <p className="text-center m-6 h-screen text-bold-700">
+                Loading...
+              </p>
+            ) : watchlistMovies.length > 0 ? (
               watchlistMovies.map((movData) => (
                 <MovieCard
                   key={movData.id}

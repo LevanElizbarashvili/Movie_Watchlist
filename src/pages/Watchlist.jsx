@@ -15,16 +15,17 @@ export default function Watchlist() {
     );
   }
 
-  useEffect(() => {
+  async function getWatchlistIds() {
     try {
-      const getWatchlistIds = async () => {
-        const data = await getDocs(watchlistCollectionRef);
-        setWatchlistIds(data.docs.map((doc) => ({ ...doc.data() })));
-      };
-      getWatchlistIds();
+      const data = await getDocs(watchlistCollectionRef);
+      setWatchlistIds(data.docs.map((doc) => ({ ...doc.data() })));
     } catch (error) {
       console.log(error);
     }
+  }
+
+  useEffect(() => {
+    getWatchlistIds();
   }, []);
 
   useEffect(() => {
@@ -58,7 +59,12 @@ export default function Watchlist() {
               <p className="text-center m-6 h-screen text-bold-700">
                 Loading...
               </p>
-            ) : watchlistMovies.length > 0 ? (
+            ) : watchlistIds.length === 0 ? (
+              <div className="text-lg mt-24 h-screen">
+                <p>Your watchlist is empty</p>
+                <Link to="/"> ➕ Let’s add some movies!</Link>
+              </div>
+            ) : (
               watchlistMovies.map((movData) => (
                 <MovieCard
                   key={movData.id}
@@ -67,11 +73,6 @@ export default function Watchlist() {
                   removeFromWatchlist={handleRemoveFromWatchlist}
                 />
               ))
-            ) : (
-              <div className="text-lg mt-24 h-screen">
-                <p>Your watchlist is empty</p>
-                <Link to="/"> ➕ Let’s add some movies!</Link>
-              </div>
             )}
           </div>
         </div>

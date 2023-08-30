@@ -48,7 +48,7 @@ export default function Header() {
             onClick={handleThemeSwitch}
           >
             <CgDarkMode />
-            {theme === "dark" ? "LightMode" : "DarkMode"}
+            {theme === "dark" ? "Light" : "Dark"}
           </button>
           {/* {isLoggedIn ? (
             <button

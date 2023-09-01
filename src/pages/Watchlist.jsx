@@ -8,6 +8,7 @@ export default function Watchlist() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
   const [watchlistIds, setWatchlistIds] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   function handleRemoveFromWatchlist(imdbID) {
     setWatchlistMovies((prev) =>
@@ -42,6 +43,7 @@ export default function Watchlist() {
           }
         }
         setisLoading(false);
+        setIsFirstLoad(false);
       } catch (error) {
         console.error(error);
         setWatchlistMovies([]);
@@ -59,7 +61,7 @@ export default function Watchlist() {
               <p className="text-center m-6 h-screen text-bold-700">
                 Loading...
               </p>
-            ) : watchlistIds.length === 0 ? (
+            ) : isFirstLoad && watchlistIds.length === 0 ? (
               <div className="text-lg mt-24 h-screen">
                 <p>Your watchlist is empty</p>
                 <Link to="/"> ➕ Let’s add some movies!</Link>

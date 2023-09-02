@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
+import { TbMovie } from "react-icons/tb";
 
 export default function Homescreen() {
   const [movies, setMovies] = useState([]);
@@ -67,8 +68,9 @@ export default function Homescreen() {
           <form className="text-center m-2">
             <input
               id="search"
-              className="rounded text-center text-base text-gray-500 capitalize 
-              border-2 border-gray-500 p-2 dark:bg-[#121212] dark:text-gray-300"
+              className="rounded text-center w-[35%] min-w-[300px] text-base text-gray-800 
+              placeholder:text-gray-600 capitalize 
+              border-2 border-gray-700 p-2 dark:bg-[#121212] dark:text-gray-300 my-8"
               type="text"
               placeholder="Search for a movie"
               name="search"
@@ -91,9 +93,10 @@ export default function Homescreen() {
                 <MovieCard key={movData.id} {...movData} isWatchlist={false} />
               ))
             ) : (
-              <p className="text-center m-4 h-screen text-bold-700">
-                Start exploring
-              </p>
+              <div className="text-center mt-24 h-screen text-bold-900 text-xl">
+                <TbMovie className="w-[100px] h-auto text-center mx-auto stroke-1.5 opacity-60" />
+                <p>Start exploring</p>
+              </div>
             )}
           </div>
           {movies.length > 0 ? (

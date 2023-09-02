@@ -37,7 +37,7 @@ export default function MovieCard(props) {
 
   const poster = props.Poster === "N/A" ? altImg : props.Poster;
   return (
-    <div className="flex my-4 p-1 border-b-1 border-gray-500 sm:w-[70%] sm:m-auto sm:p-2 md:w-[60%] lg:w-[45%] min-w-[350px] ">
+    <div className="flex mb-4 p-2 sm:w-[60%] sm:m-auto sm:p-2 md:w-[60%] lg:w-[40%] min-w-[350px]">
       <img
         src={poster}
         alt="img"
@@ -74,7 +74,7 @@ export default function MovieCard(props) {
             </div>
           )}
         </div>
-        <p className="text-xs text-start w-full h-2/3 2xl:text-base text-ellipsis overflow-clip">
+        <p className="text-xs text-start w-full h-2/3 2xl:text-sm text-ellipsis overflow-clip ">
           {props.Plot}
         </p>
       </div>

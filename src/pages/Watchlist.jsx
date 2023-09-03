@@ -55,7 +55,7 @@ export default function Watchlist() {
   return (
     <div>
       <div>
-        <div className="text-center m-2 h-screen">
+        <div className="text-center m-2 min-h-screen">
           <div id="list">
             {isLoading ? (
               <p className="text-center m-6 h-screen text-bold-700">
@@ -68,12 +68,13 @@ export default function Watchlist() {
               </div>
             ) : (
               watchlistMovies.map((movData) => (
-                <MovieCard
-                  key={movData.id}
-                  {...movData}
-                  isWatchlist={true}
-                  removeFromWatchlist={handleRemoveFromWatchlist}
-                />
+                <div key={movData.imdbID}>
+                  <MovieCard
+                    {...movData}
+                    isWatchlist={true}
+                    removeFromWatchlist={handleRemoveFromWatchlist}
+                  />
+                </div>
               ))
             )}
           </div>

@@ -68,9 +68,8 @@ export default function Homescreen() {
           <form className="text-center m-2">
             <input
               id="search"
-              className="rounded text-center w-[35%] min-w-[300px] text-base text-gray-800 
-              placeholder:text-gray-600 capitalize 
-              border-2 border-gray-700 p-2 dark:bg-[#121212] dark:text-gray-300 my-8"
+              className="rounded text-center w-[35%] min-w-[300px] text-base text-gray-800  capitalize 
+              border-2 border-[#2E2E2F] p-2 dark:bg-[#2E2E2F] dark:text-[#A5A5A5] my-8"
               type="text"
               placeholder="Search for a movie"
               name="search"
@@ -90,7 +89,11 @@ export default function Homescreen() {
               </p>
             ) : movies.length > 0 ? (
               movies.map((movData) => (
-                <MovieCard key={movData.id} {...movData} isWatchlist={false} />
+                <MovieCard
+                  key={movData.imdbID}
+                  {...movData}
+                  isWatchlist={false}
+                />
               ))
             ) : (
               <div className="text-center mt-24 h-screen text-bold-900 text-xl">

@@ -45,16 +45,16 @@ export default function Login() {
         <input
           name="email"
           onChange={handleChange}
-          className="rounded text-center text-base text-gray-500 capitalize border-2 border-gray-500 p-2 mx-8
-          dark:bg-[#121212] dark:text-gray-300 sm:w-[30%] lg:w-[30%]"
+          className="rounded text-center text-base text-gray-500 capitalize border-2 border-[#2e2e2F] p-2 mx-8
+          dark:bg-[#2e2e2F] dark:text-gray-300 sm:w-[30%] lg:w-[30%] min-w-56"
           type="email"
           placeholder="Email address"
           value={loginFormData.email}
         />
         <input
           name="password"
-          className="rounded text-center text-base text-gray-500 capitalize border-2 border-gray-300 p-2 m-8
-          dark:bg-[#121212] dark:text-gray-300 sm:w-[30%] lg:w-[30%]"
+          className="rounded text-center text-base text-gray-500 capitalize border-2 border-[#2e2e2F] p-2 m-8
+          dark:bg-[#2e2e2F] dark:text-gray-300 sm:w-[30%] lg:w-[30%] min-w-56"
           onChange={handleChange}
           type="password"
           placeholder="Password"

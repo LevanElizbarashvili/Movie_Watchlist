@@ -21,12 +21,21 @@ export default function Header() {
     setTheme(theme === "dark" ? "light" : "dark");
   }
 
+  function handleNavToggle() {
+    setIsNavExpanded(!isNavExpanded);
+  }
+
+  function handleToggleAndTheme() {
+    handleNavToggle();
+    handleThemeSwitch();
+  }
+
   return (
     <header className="bg-indigo-500 text-white dark:text-gray-900">
       <nav className="p-6">
         <button
           className="float-right mr-4 md:hidden"
-          onClick={() => setIsNavExpanded(!isNavExpanded)}
+          onClick={handleNavToggle}
         >
           <MdMenuOpen className="text-3xl text-center" />
         </button>
@@ -49,12 +58,14 @@ export default function Header() {
             <Link
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               to="/"
+              onClick={handleNavToggle}
             >
               <FaSearch /> Search
             </Link>
             <Link
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               to="/watchlist"
+              onClick={handleNavToggle}
             >
               <FaBookmark />
               Watchlist
@@ -62,12 +73,13 @@ export default function Header() {
             <Link
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               to="/login"
+              onClick={handleNavToggle}
             >
               <FaUserCircle /> Login
             </Link>
             <button
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
-              onClick={handleThemeSwitch}
+              onClick={handleToggleAndTheme}
             >
               <CgDarkMode />
               {theme === "dark" ? "Light" : "Dark"}

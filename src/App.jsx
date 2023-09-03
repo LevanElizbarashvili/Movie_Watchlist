@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 
 export default function App() {
   return (
-    <div className="app">
+    <div className="app font-inter">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>

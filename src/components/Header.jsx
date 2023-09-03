@@ -28,45 +28,50 @@ export default function Header() {
           className="float-right mr-4 md:hidden"
           onClick={() => setIsNavExpanded(!isNavExpanded)}
         >
-          {" "}
-          <MdMenuOpen className="text-3xl text-center" />{" "}
+          <MdMenuOpen className="text-3xl text-center" />
         </button>
         <div className="flex justify-between">
-          <div className="text-2xl font-extrabold flex items-center gap-4">
+          <Link
+            className="text-2xl font-extrabold flex items-center gap-4"
+            to="/"
+          >
             <GiFilmProjector />
             MovieTrackr
-          </div>
+          </Link>
           <div
-            className={`md:flex gap-4 items-center justify-center ${
-              isNavExpanded ? "" : "hidden"
+            id="nav"
+            className={`md:flex gap-4${
+              isNavExpanded
+                ? "visible block w-[51%] fixed h-[100%] top-0 left-0 pt-8 pl-4 bg-white text-gray-900 dark:text-gray-300 dark:bg-[#121212] z-30"
+                : "invisible  hidden"
             }`}
           >
             <Link
-              className="text-sm flex items-center gap-2 hover:bg-indigo-400 translate-x-2 p-2 hover:rounded-md"
+              className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               to="/"
             >
               <FaSearch /> Search
             </Link>
             <Link
-              className="text-sm flex items-center gap-2 hover:bg-indigo-400 translate-x-2 p-2 hover:rounded-md"
+              className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               to="/watchlist"
             >
               <FaBookmark />
               Watchlist
             </Link>
+            <Link
+              className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
+              to="/login"
+            >
+              <FaUserCircle /> Login
+            </Link>
             <button
-              className="text-sm flex items-center gap-2 hover:bg-indigo-400 translate-x-2 p-2 hover:rounded-md"
+              className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               onClick={handleThemeSwitch}
             >
               <CgDarkMode />
               {theme === "dark" ? "Light" : "Dark"}
             </button>
-            <Link
-              className="text-sm flex items-center gap-2 hover:bg-indigo-400 translate-x-2 p-2 hover:rounded-md"
-              to="/login"
-            >
-              <FaUserCircle /> Login
-            </Link>
           </div>
         </div>
       </nav>

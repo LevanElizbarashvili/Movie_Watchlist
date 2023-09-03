@@ -94,7 +94,7 @@ export default function Homescreen() {
               ))
             ) : (
               <div className="text-center mt-24 h-screen text-bold-900 text-xl">
-                <TbMovie className="w-[100px] h-auto text-center mx-auto stroke-1.5 opacity-60" />
+                <TbMovie className="w-[100px] h-auto text-center mx-auto stroke-1.5 opacity-80" />
                 <p>Start exploring</p>
               </div>
             )}

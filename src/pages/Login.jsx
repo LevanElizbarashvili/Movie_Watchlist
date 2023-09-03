@@ -40,7 +40,7 @@ export default function Login() {
 
   return (
     <div className="text text-center h-screen">
-      <h1 className="my-4 text-lg capitalize">Sign in to your account</h1>
+      <h1 className="mt-16 mb-8 text-lg capitalize">Sign in to your account</h1>
       <form className="flex flex-col items-center ">
         <input
           name="email"
@@ -62,15 +62,13 @@ export default function Login() {
         />
         <button
           onClick={handleSubmit}
-          className="border-2 border-green-500 bg-green-500 text-white text-shadow-2xl
-           rounded-md p-4 w-48 sm:w-[30%] lg:w-[20%] shadow-md"
+          className=" bg-green-500 text-white rounded-md p-4 w-56  shadow-md"
         >
           Sign In
         </button>
         <p className="mt-4 uppercase">or</p>
         <button
-          className=" bg-gray-100 text-black rounded-md p-4 mt-4 min-w-60
-           sm:w-[30%] lg:w-[20%] flex items-center justify-center gap-2 shadow-md"
+          className=" bg-gray-100 text-black rounded-md p-4 mt-4 w-56 flex items-center justify-center gap-2 shadow-md"
           onClick={googleAuth}
         >
           <FcGoogle className="w-6 h-6" />

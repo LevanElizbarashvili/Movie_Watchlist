@@ -21,22 +21,23 @@ export default function Header() {
     setTheme(theme === "dark" ? "light" : "dark");
   }
 
-  function handleNavToggle() {
-    setIsNavExpanded(!isNavExpanded);
+  function handleNavOff() {
+    setIsNavExpanded(false);
   }
 
-  function handleToggleAndTheme() {
-    handleNavToggle();
+  function handlenavOn() {
+    setIsNavExpanded(true);
+  }
+
+  function handleNavAndTheme() {
     handleThemeSwitch();
+    setIsNavExpanded(false);
   }
 
   return (
     <header className="bg-indigo-500 text-white dark:text-gray-900">
       <nav className="p-6">
-        <button
-          className="float-right mr-4 md:hidden"
-          onClick={handleNavToggle}
-        >
+        <button className="float-right mr-4 md:hidden" onClick={handlenavOn}>
           <MdMenuOpen className="text-3xl text-center" />
         </button>
         <div className="flex justify-between">
@@ -58,14 +59,14 @@ export default function Header() {
             <Link
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               to="/"
-              onClick={handleNavToggle}
+              onClick={handleNavOff}
             >
               <FaSearch /> Search
             </Link>
             <Link
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               to="/watchlist"
-              onClick={handleNavToggle}
+              onClick={handleNavOff}
             >
               <FaBookmark />
               Watchlist
@@ -73,13 +74,13 @@ export default function Header() {
             <Link
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
               to="/login"
-              onClick={handleNavToggle}
+              onClick={handleNavOff}
             >
               <FaUserCircle /> Login
             </Link>
             <button
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"
-              onClick={handleToggleAndTheme}
+              onClick={handleNavAndTheme}
             >
               <CgDarkMode />
               {theme === "dark" ? "Light" : "Dark"}

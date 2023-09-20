@@ -2,7 +2,7 @@ import { useState } from "react";
 import altImg from "../assets/noimage.jpg";
 import PropTypes from "prop-types";
 import { addDoc, deleteDoc, getDocs, query, where } from "firebase/firestore";
-import { watchlistCollectionRef } from "../utils/firebase";
+import { auth, watchlistCollectionRef } from "../utils/firebase";
 
 export default function MovieCard(props) {
   const [isWatchlist] = useState(props.isWatchlist);
@@ -22,6 +22,7 @@ export default function MovieCard(props) {
   async function addToWatchlist(id) {
     await addDoc(watchlistCollectionRef, {
       imdbID: id,
+      userId: auth?.currentUser?.uid,
     });
   }
 
@@ -29,7 +30,6 @@ export default function MovieCard(props) {
     props.removeFromWatchlist(id);
     const moviequery = query(watchlistCollectionRef, where("imdbID", "==", id));
     const querySnapshot = await getDocs(moviequery);
-    console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
       deleteDoc(doc.ref);
     });

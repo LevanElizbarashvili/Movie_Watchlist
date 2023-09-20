@@ -76,7 +76,7 @@ export default function Header() {
               to="/login"
               onClick={handleNavOff}
             >
-              <FaUserCircle /> Login
+              <FaUserCircle /> Profile
             </Link>
             <button
               className="text-base flex items-center gap-2 hover:bg-indigo-600 duration-150 p-2 m-2 hover:rounded-md hover:m-3"

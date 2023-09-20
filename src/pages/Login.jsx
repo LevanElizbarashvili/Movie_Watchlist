@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { auth, googleProvider } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
@@ -8,10 +8,11 @@ import {
 import { FcGoogle } from "react-icons/fc";
 
 export default function Login() {
-  const [loginFormData, setLoginFormData] = React.useState({
+  const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
   });
+  const [isLogedIn, setisLogedIn] = useState(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -28,6 +29,7 @@ export default function Login() {
         loginFormData.email,
         loginFormData.password
       );
+      setisLogedIn(true);
     } catch (error) {
       console.error(error);
     }
@@ -37,21 +39,20 @@ export default function Login() {
     e.preventDefault();
     try {
       await signInWithPopup(auth, googleProvider);
+      setisLogedIn(true);
     } catch (error) {
       console.error(error);
     }
   }
 
-  async function logOut(e) {
-    e.preventDefault();
+  async function logOut() {
     try {
       await signOut(auth);
+      setisLogedIn(false);
     } catch (error) {
       console.error(error);
     }
   }
-
-  console.log(auth?.currentUser?.photoURL);
 
   const profile = (
     <div>
@@ -59,6 +60,7 @@ export default function Login() {
         src={auth?.currentUser?.photoURL}
         className="rounded-full w-[80px] m-auto mt-10"
       ></img>
+      <p className="mt-2 font-medium">{auth?.currentUser?.displayName}</p>
       <button
         onClick={logOut}
         className=" bg-red-500 mt-16 text-white rounded-md p-4 w-56  shadow-md"
@@ -70,7 +72,7 @@ export default function Login() {
 
   return (
     <div className="text text-center h-screen">
-      {auth?.currentUser ? (
+      {auth?.currentUser || isLogedIn ? (
         profile
       ) : (
         <div>

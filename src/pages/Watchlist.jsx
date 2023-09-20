@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 import { Link } from "react-router-dom";
-import { getDocs } from "firebase/firestore";
-import { watchlistCollectionRef } from "../utils/firebase";
+import { getDocs, query, where } from "firebase/firestore";
+import { auth, watchlistCollectionRef } from "../utils/firebase";
 
 export default function Watchlist() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
@@ -18,8 +18,14 @@ export default function Watchlist() {
 
   async function getWatchlistIds() {
     try {
-      const data = await getDocs(watchlistCollectionRef);
-      setWatchlistIds(data.docs.map((doc) => ({ ...doc.data() })));
+      const watchlistSnapshot = await getDocs(
+        query(
+          watchlistCollectionRef,
+          where("userId", "==", auth.currentUser.uid)
+        )
+      );
+      const watchlistIds = watchlistSnapshot.docs.map((doc) => doc.data());
+      setWatchlistIds(watchlistIds);
     } catch (error) {
       console.log(error);
     }

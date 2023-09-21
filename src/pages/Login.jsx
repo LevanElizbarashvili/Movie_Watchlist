@@ -2,6 +2,8 @@ import { useState } from "react";
 import { auth, googleProvider } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -24,6 +26,14 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      if (fetchSignInMethodsForEmail(auth?.currentUser?.email)) {
+        await signInWithEmailAndPassword(
+          auth,
+          loginFormData.email,
+          loginFormData.password
+        );
+        setisLogedIn(true);
+      }
       await createUserWithEmailAndPassword(
         auth,
         loginFormData.email,
@@ -60,7 +70,11 @@ export default function Login() {
         src={auth?.currentUser?.photoURL}
         className="rounded-full w-[80px] m-auto mt-10"
       ></img>
-      <p className="mt-2 font-medium">{auth?.currentUser?.displayName}</p>
+      <p className="mt-2 font-medium">
+        {auth?.currentUser?.displayName
+          ? auth?.currentUser?.displayName
+          : auth?.currentUser?.email}
+      </p>
       <button
         onClick={logOut}
         className=" bg-red-500 mt-16 text-white rounded-md p-4 w-56  shadow-md"

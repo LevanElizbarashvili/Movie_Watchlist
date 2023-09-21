@@ -68,8 +68,8 @@ export default function Homescreen() {
           <form className="text-center m-2">
             <input
               id="search"
-              className="rounded text-center w-[35%] min-w-[300px] text-base text-gray-800  capitalize 
-              border-2 border-[#2E2E2F] p-2 dark:bg-[#2E2E2F] dark:text-[#A5A5A5] my-8"
+              className="rounded text-center w-[35%] min-w-[300px] text-base text-gray-800 bg-gray-200
+               p-4 dark:bg-[#2f3135] dark:text-[#A5A5A5] my-8 placeholder:text-gray-600 dark:placeholder:text-gray-400"
               type="text"
               placeholder="Search for a movie"
               name="search"
@@ -96,7 +96,7 @@ export default function Homescreen() {
                 />
               ))
             ) : (
-              <div className="text-center mt-24 h-screen text-bold-900 text-xl">
+              <div className="text-center mt-24 h-screen text-bold-900 text-xl text-gray-600 dark:text-gray-400">
                 <TbMovie className="w-[100px] h-auto text-center mx-auto stroke-1.5 opacity-80" />
                 <p>Start exploring</p>
               </div>

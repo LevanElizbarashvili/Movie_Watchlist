@@ -63,12 +63,12 @@ export default function Watchlist() {
       <div>
         <div className="text-center m-2 min-h-screen">
           <div id="list">
-            {isLoading ? (
+            {!isFirstLoad && isLoading ? (
               <p className="text-center m-6 h-screen text-bold-700">
                 Loading...
               </p>
             ) : !isFirstLoad && watchlistIds.length === 0 ? (
-              <div className="text-lg mt-24 h-screen">
+              <div className="text-lg mt-24 h-screen  dark:text-gray-400 text-gray-600">
                 <p>Your watchlist is empty</p>
                 <Link to="/"> ➕ Let’s add some movies!</Link>
               </div>
